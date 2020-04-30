@@ -5,7 +5,7 @@
 * go版本：1.13
 * kubeflow版本：0.7.0
 * 开发工具：IntelliJ IDEA 2019.2.3 x64
-* 部署指导见我的博客https://blog.csdn.net/reachyu以及微信公众号“程序员金枪鱼”
+* 部署指导见我的博客https://blog.csdn.net/reachyu 以及微信公众号“程序员金枪鱼”的文章
 # 目录介绍
 ## config
 配置目录
