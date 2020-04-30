@@ -15,11 +15,11 @@
 业务逻辑及api目录
 ## 访问示例
 ### 本地服务
-前端  http://ip:9090/html
-api   http://ip:9090/app/getapps
+* 前端  http://ip:9090/html
+* api   http://ip:9090/app/getapps
 ### 部署kubeflow
-前端  http://ip:31000/html
-api   http://ip:31000/app/getapps
+* 前端  http://ip:31000/html
+* api   http://ip:31000/app/getapps
 # 编译
 ```
 go build
