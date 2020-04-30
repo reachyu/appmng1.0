@@ -1,0 +1,47 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: appmng
+  namespace: kubeflow
+  labels:
+    app: appmng
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  minReadySeconds: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: appmng
+    spec:
+      containers:
+      - image: appmng1.0:V1.0
+        imagePullPolicy: IfNotPresent
+        name: appmng
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        resources:{}
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: appmng-svc
+  namespace: kubeflow
+  labels:
+    app: appmng
+spec:
+  type: NodePort
+  ports:
+    - port: 9090
+      targetPort: 9090
+      nodePort: 31000
+  selector:
+    app: appmng
