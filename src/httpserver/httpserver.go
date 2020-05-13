@@ -7,8 +7,6 @@ import (
 )
 
 /*
-yuhongbo
-2020.4.10
 开启http server
 封装对外提供的接口服务
 */

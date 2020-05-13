@@ -10,8 +10,6 @@ import (
 )
 
 /*
-yuhongbo
-2020.4.10
 提供http请求通用服务
 */
 
