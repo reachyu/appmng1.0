@@ -30,6 +30,6 @@ func GetUserinfo()  {
 	storage.GetUserinfo()
 }
 
-func GetAppinfo()  {
-	storage.GetAppinfo()
+func GetAppinfo() string {
+	return storage.GetAppinfo()
 }

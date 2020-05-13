@@ -3,6 +3,7 @@ package storage
 import (
 	"appmng/src/common"
 	"fmt"
+	"encoding/json"
 )
 
 /*
@@ -210,27 +211,38 @@ func GetUserinfo() {
 	}
 }
 
-func GetAppinfo() {
+func GetAppinfo() string {
 	db := common.GetInstance().GetMysqlDB()
-	rows, err := db.Raw("select * from app_manages").Rows()
+	rows, err := db.Raw("select id,apply_name,apply_type,apply_frame,apply_environment from app_manages").Rows()
 	if err != nil {
 		fmt.Printf("query faied, error:[%v]", err.Error())
-		return
+		return ""
 	}
-
+	var rlt map[string]string
+	rlt = make(map[string]string)
 	for rows.Next() {
 		//定义变量接收查询数据
 		var ApplyName, ApplyType, ApplyFrame, ApplyEnvironment string
 		var id int64
 		err := rows.Scan(&id, &ApplyName, &ApplyType, &ApplyFrame, &ApplyEnvironment)
 		if err != nil {
-			fmt.Println("no data")
+			fmt.Println("no data,error==== %s",err)
 		}
 		fmt.Println("查询结果======%s %s %s %s %s \n", id, ApplyName, ApplyType, ApplyFrame, ApplyEnvironment)
+		rlt["id"] = string(id)
+		rlt["ApplyName"] = ApplyName
+		rlt["ApplyType"] = ApplyType
+		rlt["ApplyFrame"] = ApplyFrame
+		rlt["ApplyEnvironment"] = ApplyEnvironment
 	}
+
+	payloadRlt, _ := json.Marshal(rlt)
 
 	//关闭结果集（释放连接）
 	if rows != nil {
 		rows.Close()
 	}
+
+	return string(payloadRlt)
+
 }

@@ -76,5 +76,6 @@ func GetUserinfo(c *gin.Context){
 }
 
 func GetAppinfo(c *gin.Context){
-	resource.GetAppinfo()
+	rlt := resource.GetAppinfo()
+	c.String(http.StatusOK, "%s", rlt)
 }
